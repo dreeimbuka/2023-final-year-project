@@ -5,21 +5,19 @@ void main() => runApp(const Hotlines());
 
 class Hotlines extends StatelessWidget {
   const Hotlines({Key? key}) : super(key: key);
-// This widget is the root
-// of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: "ListView.builder",
-        theme: ThemeData(primarySwatch: Colors.green),
-        debugShowCheckedModeBanner: false,
-        // home : new ListViewBuilder(),  NO Need To Use Unnecessary New Keyword
-        home: const ListViewBuilder());
-  }
-}
 
-class ListViewBuilder extends StatelessWidget {
-  const ListViewBuilder({Key? key}) : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//         title: "ListView.builder",
+//         theme: ThemeData(primarySwatch: Colors.green),
+//         debugShowCheckedModeBanner: false,
+//         home: const ListViewBuilder());
+//   }
+// }
+
+// class ListViewBuilder extends StatelessWidget {
+//   const ListViewBuilder({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

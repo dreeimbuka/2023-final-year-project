@@ -7,8 +7,6 @@ import 'package:mhapp/pages/guides.dart';
 import 'package:mhapp/pages/habit.dart';
 import 'package:mhapp/pages/hotlines.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-// import 'package:mhapp/util/my_button.dart';
-
 import 'package:mhapp/util/notification.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,33 +17,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int index = 0;
-
-  final screens = [
-    HomePage(),
-    Habit(),
-  ];
-
   final _controller = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 235, 216, 239),
-      // extendBody: true,
-      // bottomNavigationBar: CurvedNavigationBar(
-      //   backgroundColor: Colors.transparent,
-      //   color: const Color.fromARGB(255, 198, 138, 236),
-      //   animationDuration: const Duration(milliseconds: 400),
-      //   height: 60,
-      //   index: index,
-      //   items: const [
-      //     Icon(Icons.home),
-      //     Icon(Icons.track_changes),
-      //     Icon(Icons.person),
-      //   ],
-      //   onTap: (index) => setState(() => this.index = index),
-      // ),
-
       body: SingleChildScrollView(
         child: Column(
           children: [

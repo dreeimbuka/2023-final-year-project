@@ -57,7 +57,7 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,
         color: const Color.fromARGB(255, 198, 138, 236),
-        animationDuration: const Duration(milliseconds: 400),
+        animationDuration: const Duration(milliseconds: 600),
         items: items,
         height: 60,
         onTap: (index) => setState(() => this.index = index),
