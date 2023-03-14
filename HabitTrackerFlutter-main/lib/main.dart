@@ -54,7 +54,6 @@ class _MainPageState extends State<MainPage> {
 
     return Scaffold(
       body: screens[index],
-      extendBody: true,
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,
         color: const Color.fromARGB(255, 198, 138, 236),

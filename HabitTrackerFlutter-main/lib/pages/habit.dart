@@ -5,7 +5,6 @@ import 'package:mhapp/components/my_fab.dart';
 import 'package:mhapp/components/my_alert_box.dart';
 import 'package:mhapp/data/habit_database.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class Habit extends StatefulWidget {
   const Habit({super.key});
@@ -122,26 +121,12 @@ class _Habit extends State<Habit> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          color: Colors.white,
-          onPressed: () {},
-        ),
+        // leading: BackButton(
+        //   color: Colors.white,
+        //   onPressed: () {},
+        // ),
         title: const Text("Habit tracker"),
         backgroundColor: const Color.fromARGB(255, 198, 138, 236),
-      ),
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: const Color.fromARGB(255, 235, 216, 239),
-        color: const Color.fromARGB(255, 198, 138, 236),
-        animationDuration: const Duration(milliseconds: 400),
-        onTap: (index) {
-          print(index);
-        },
-        height: 60,
-        items: const [
-          Icon(Icons.home),
-          Icon(Icons.track_changes),
-          Icon(Icons.person),
-        ],
       ),
       backgroundColor: Color.fromARGB(255, 235, 216, 239),
       floatingActionButton: MyFloatingActionButton(onPressed: createNewHabit),

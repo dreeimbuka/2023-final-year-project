@@ -25,20 +25,6 @@ class ListViewBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 235, 216, 239),
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: const Color.fromARGB(255, 235, 216, 239),
-        color: const Color.fromARGB(255, 198, 138, 236),
-        animationDuration: const Duration(milliseconds: 400),
-        onTap: (index) {
-          print(index);
-        },
-        height: 60,
-        items: const [
-          Icon(Icons.home),
-          Icon(Icons.track_changes),
-          Icon(Icons.person),
-        ],
-      ),
       appBar: AppBar(
         title: const Text("24hr-hotlines"),
         backgroundColor: const Color.fromARGB(255, 198, 138, 236),
