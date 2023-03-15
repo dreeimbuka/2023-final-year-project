@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mhapp/pages/habit.dart';
-import 'package:mhapp/pages/guides.dart';
-import 'package:mhapp/pages/habit.dart';
 import 'package:mhapp/pages/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mhapp/pages/profile.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   // initialize hive
@@ -65,3 +64,9 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
+
+// Future<void> Guides() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   runApp(MyApp());
+// }
