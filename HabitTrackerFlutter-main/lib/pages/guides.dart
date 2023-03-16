@@ -1,35 +1,71 @@
 import 'package:flutter/material.dart';
 
-class Guides extends StatefulWidget {
-  const Guides({super.key});
+void main() => runApp(const Guides());
 
-  @override
-  State<Guides> createState() => _HomePageState();
-}
+class Guides extends StatelessWidget {
+  const Guides({Key? key}) : super(key: key);
 
-class _HomePageState extends State<Guides> {
-  final _controller = PageController();
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//         title: "ListView.builder",
+//         theme: ThemeData(primarySwatch: Colors.green),
+//         debugShowCheckedModeBanner: false,
+//         home: const ListViewBuilder());
+//   }
+// }
+
+// class ListViewBuilder extends StatelessWidget {
+//   const ListViewBuilder({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 235, 216, 239),
-        appBar: AppBar(
-          title: const Text('Guides'),
-          backgroundColor: Color.fromARGB(255, 198, 138, 236),
+      backgroundColor: const Color.fromARGB(255, 235, 216, 239),
+      appBar: AppBar(
+        title: const Text("Guides"),
+        backgroundColor: const Color.fromARGB(255, 198, 138, 236),
+      ),
+      body: const LisTileExample(),
+    );
+  }
+}
+
+class LisTileExample extends StatelessWidget {
+  const LisTileExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: const <Widget>[
+        Card(
+          child: ListTile(
+            // leading: Icon(Icons.phone),
+            title: Text('Anxiety'),
+            // subtitle: Text('+254 718 227 440'),
+            // trailing: Icon(Icons.more_vert),
+          ),
         ),
-        body: Row(
-          children: [
-            Container(
-              color: Colors.black,
-            )
-          ],
-        )
-        // Image.asset(
-        //   'assets/lib/images/water_brain.png',
-        //   height: 30,
-        //   width: size.width,
-        //   fit: BoxFit.cover,
-        );
+        Card(
+          child: ListTile(
+            // leading: Icon(Icons.),
+            title: Text('Insomnia'),
+
+            // subtitle: Text('+254 722 178 177'),
+            // trailing: Icon(Icons.more_vert),
+            // isThreeLine: true,
+          ),
+        ),
+        Card(
+          child: ListTile(
+            // tileColor:  Color.fromARGB(221, 199, 138, 236),
+            // leading: Icon(Icons.phone),
+            title: Text('Panic attacks'),
+            // subtitle: Text('+254 718 227 440'),
+            // trailing: Icon(Icons.more_vert),
+          ),
+        ),
+      ],
+    );
   }
 }

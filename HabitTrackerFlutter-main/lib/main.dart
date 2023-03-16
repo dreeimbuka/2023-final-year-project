@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mhapp/firebase_options.dart';
+import 'package:mhapp/pages/authentication.dart';
 import 'package:mhapp/pages/habit.dart';
 import 'package:mhapp/pages/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -9,6 +11,9 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   // initialize hive
   await Hive.initFlutter();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   // open a box
   await Hive.openBox("Habit_Database");
