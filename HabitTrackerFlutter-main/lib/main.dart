@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mhapp/firebase_options.dart';
-import 'package:mhapp/pages/authentication.dart';
+import 'package:mhapp/pages/guides.dart';
 import 'package:mhapp/pages/habit.dart';
 import 'package:mhapp/pages/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -69,9 +69,3 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
-
-// Future<void> Guides() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp();
-//   runApp(MyApp());
-// }
