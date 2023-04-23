@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mhapp/main.dart';
 import 'package:mhapp/reusable_widgets/reusable_widget.dart';
 import 'package:mhapp/pages/profile.dart';
@@ -39,7 +40,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                reusableTextField("Enter Email", Icons.person_outline, false,
+                reusableTextField("Enter UserName", Icons.person_outline, false,
                     _emailTextController),
                 const SizedBox(
                   height: 20,
@@ -50,17 +51,19 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 5,
                 ),
                 forgetPassword(context),
-                firebaseUIButton(context, "Sign In", () {
-                  FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) {
+                firebaseUIButton(context, "Sign In", () async {
+                  try {
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: _emailTextController.text,
+                        password: _passwordTextController.text);
+
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MainPage()));
-                  }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
-                  });
+                  } on FirebaseAuthException catch (error) {
+                    Fluttertoast.showToast(
+                        msg: 'please enter the right credentials',
+                        gravity: ToastGravity.TOP);
+                  }
                 }),
                 signUpOption()
               ],

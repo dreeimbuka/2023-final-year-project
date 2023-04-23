@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mhapp/reusable_widgets/reusable_widget.dart';
 import 'package:mhapp/pages/profile.dart';
 import 'package:mhapp/util/color_utils.dart';
@@ -48,15 +49,21 @@ class _ResetPasswordState extends State<ResetPassword> {
                 const SizedBox(
                   height: 20,
                 ),
-                firebaseUIButton(context, "Reset Password", () {
-                  FirebaseAuth.instance
-                      .sendPasswordResetEmail(email: _emailTextController.text)
-                      .then((value) {
+                firebaseUIButton(context, "Reset Password", () async {
+                  try {
+                    await FirebaseAuth.instance.sendPasswordResetEmail(
+                      email: _emailTextController.text,
+                    );
+
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => SignUpScreen()));
-                  });
+                  } on FirebaseAuthException catch (error) {
+                    Fluttertoast.showToast(
+                        msg: 'please enter the right credentials',
+                        gravity: ToastGravity.TOP);
+                  }
                 })
               ],
             ),

@@ -4,6 +4,7 @@ import 'package:mhapp/pages/profile.dart';
 import 'package:mhapp/util/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:mhapp/main.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -60,18 +61,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                firebaseUIButton(context, "Sign Up", () {
-                  FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) {
-                    print("Created New Account");
+                firebaseUIButton(context, "Sign Up", () async {
+                  try {
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: _emailTextController.text,
+                        password: _passwordTextController.text);
+
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MainPage()));
-                  }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
-                  });
+                  } on FirebaseAuthException catch (error) {
+                    Fluttertoast.showToast(
+                        msg: 'please enter the right credentials',
+                        gravity: ToastGravity.TOP);
+                  }
                 })
               ],
             ),
