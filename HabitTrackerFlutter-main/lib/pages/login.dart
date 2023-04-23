@@ -1,91 +1,77 @@
-// import 'package:flutter/material.dart';
-// import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mhapp/main.dart';
+import 'package:mhapp/screens/signup_screen.dart';
 
-// void main() => runApp(MyApp());
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
 
-// class MyApp extends StatelessWidget {
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: MyLoginPage(),
-//     );
-//   }
-// }
+class _LoginScreenState extends State<LoginScreen> {
+  late String _email, _password;
 
-// class MyLoginPage extends StatefulWidget {
-//   @override
-//   _MyLoginPageState createState() => _MyLoginPageState();
-// }
+  final auth = FirebaseAuth.instance;
 
-// class _MyLoginPageState extends State<MyLoginPage> {
-//   bool showProgress = false;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Firebase Authentication"),
-//       ),
-//       body: Center(
-//         child: ModalProgressHUD(
-//           inAsyncCall: showProgress,
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: <Widget>[
-//               Text(
-//                 "Login Page",
-//                 style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20.0),
-//               ),
-//               SizedBox(
-//                 height: 20.0,
-//               ),
-//               TextField(
-//                 keyboardType: TextInputType.emailAddress,
-//                 textAlign: TextAlign.center,
-//                 onChanged: (value) {},
-//                 decoration: InputDecoration(
-//                     hintText: "Enter your Email",
-//                     border: OutlineInputBorder(
-//                         borderRadius: BorderRadius.all(Radius.circular(32.0)))),
-//               ),
-//               SizedBox(
-//                 height: 20.0,
-//               ),
-//               TextField(
-//                 obscureText: true,
-//                 textAlign: TextAlign.center,
-//                 onChanged: (value) {},
-//                 decoration: InputDecoration(
-//                     hintText: "Enter your Password",
-//                     border: OutlineInputBorder(
-//                         borderRadius: BorderRadius.all(Radius.circular(32.0)))),
-//               ),
-//               SizedBox(
-//                 height: 20.0,
-//               ),
-//               Material(
-//                 elevation: 5,
-//                 color: Colors.lightBlue,
-//                 borderRadius: BorderRadius.circular(32.0),
-//                 child: MaterialButton(
-//                   onPressed: () {},
-//                   minWidth: 200.0,
-//                   height: 45.0,
-//                   child: Text(
-//                     "Login",
-//                     style:
-//                         TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0),
-//                   ),
-//                 ),
-//               )
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Login'),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 50),
+            child: TextField(
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(hintText: 'Email'),
+              onChanged: (value) {
+                setState(() {
+                  _email = value.trim();
+                });
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 50),
+            child: TextField(
+              obscureText: true,
+              decoration: InputDecoration(hintText: 'Password'),
+              onChanged: (value) {
+                setState(() {
+                  _password = value.trim();
+                });
+              },
+            ),
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            ElevatedButton(
+                child: Text('Signin'),
+                onPressed: () {
+                  auth
+                      .signInWithEmailAndPassword(
+                          email: _email, password: _password)
+                      .then((_) {
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => MainPage()));
+                  });
+                }),
+            ElevatedButton(
+              child: Text('Signup'),
+              onPressed: () {
+                auth
+                    .createUserWithEmailAndPassword(
+                        email: _email, password: _password)
+                    .then((_) {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => MainPage()));
+                });
+              },
+            )
+          ])
+        ],
+      ),
+    );
+  }
+}

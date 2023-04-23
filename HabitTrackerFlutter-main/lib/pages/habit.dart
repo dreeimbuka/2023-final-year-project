@@ -5,6 +5,8 @@ import 'package:mhapp/components/my_fab.dart';
 import 'package:mhapp/components/my_alert_box.dart';
 import 'package:mhapp/data/habit_database.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:mhapp/main.dart';
+import 'package:mhapp/util/color_utils.dart';
 
 class Habit extends StatefulWidget {
   const Habit({super.key});
@@ -121,10 +123,15 @@ class _Habit extends State<Habit> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // leading: BackButton(
-        //   color: Colors.white,
-        //   onPressed: () {},
-        // ),
+        leading: BackButton(
+          color: Colors.white,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MainPage()),
+            );
+          },
+        ),
         title: const Text("Habit tracker"),
         backgroundColor: const Color.fromARGB(255, 198, 138, 236),
       ),
@@ -151,7 +158,7 @@ class _Habit extends State<Habit> {
                 deleteTapped: (context) => deleteHabit(index),
               );
             },
-          )
+          ),
         ],
       ),
     );

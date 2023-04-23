@@ -8,6 +8,10 @@ import 'package:mhapp/pages/habit.dart';
 import 'package:mhapp/pages/hotlines.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:mhapp/util/notification.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:mhapp/pages/login.dart';
+import 'package:mhapp/screens/signup_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -36,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Hi,User',
+                      'mhapp',
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
@@ -221,3 +225,22 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+// class HomeScreen extends StatelessWidget {
+//   final auth = FirebaseAuth.instance;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: ElevatedButton(
+//           child: Text('Logout'),
+//           onPressed: () {
+//             auth.signOut();
+//             Navigator.of(context).pushReplacement(
+//                 MaterialPageRoute(builder: (context) => LoginScreen()));
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }

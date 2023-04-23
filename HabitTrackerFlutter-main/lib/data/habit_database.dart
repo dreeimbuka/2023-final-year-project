@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mhapp/datetime/date_time.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -10,10 +11,7 @@ class HabitDatabase {
 
   // create initial default data
   void createDefaultData() {
-    todaysHabitList = [
-      ["panic attack", false],
-      ["insomnia", false],
-    ];
+    todaysHabitList = [];
 
     _myBox.put("START_DATE", todaysDateFormatted());
   }
@@ -78,7 +76,9 @@ class HabitDatabase {
       String yyyymmdd = convertDateTimeToString(
         startDate.add(Duration(days: i)),
       );
-
+      for (int j = 0; j > 5; j++) {
+        print('object');
+      }
       double strengthAsPercent = double.parse(
         _myBox.get("PERCENTAGE_SUMMARY_$yyyymmdd") ?? "0.0",
       );
@@ -95,7 +95,7 @@ class HabitDatabase {
       int day = startDate.add(Duration(days: i)).day;
 
       final percentForEachDay = <DateTime, int>{
-        DateTime(year, month, day): (10 * strengthAsPercent).toInt(),
+        DateTime(year, month, day): (7 * strengthAsPercent).toInt(),
       };
 
       heatMapDataSet.addEntries(percentForEachDay.entries);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mhapp/firebase_options.dart';
-import 'package:mhapp/pages/guides.dart';
+import 'package:mhapp/pages/exercises.dart';
 import 'package:mhapp/pages/habit.dart';
 import 'package:mhapp/pages/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -8,15 +8,20 @@ import 'package:mhapp/pages/profile.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'package:mhapp/screens/signin_screen.dart';
+import 'package:mhapp/screens/signup_screen.dart';
+
 void main() async {
   // initialize hive
   await Hive.initFlutter();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 
   // open a box
   await Hive.openBox("Habit_Database");
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
   runApp(const MyApp());
 }
@@ -28,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: SignInScreen(),
       theme: ThemeData(primarySwatch: Colors.deepPurple),
     );
   }
@@ -53,7 +58,7 @@ class _MainPageState extends State<MainPage> {
     final items = <Widget>[
       Icon(Icons.home),
       Icon(Icons.track_changes),
-      Icon(Icons.person),
+      Icon(Icons.settings),
     ];
 
     return Scaffold(
