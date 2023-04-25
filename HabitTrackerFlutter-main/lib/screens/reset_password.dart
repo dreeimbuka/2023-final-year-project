@@ -44,7 +44,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter Email Id", Icons.person_outline, false,
+                reusableTextField("Enter Email", Icons.person_outline, false,
                     _emailTextController),
                 const SizedBox(
                   height: 20,
@@ -61,8 +61,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                             builder: (context) => SignUpScreen()));
                   } on FirebaseAuthException catch (error) {
                     Fluttertoast.showToast(
-                        msg: 'please enter the right credentials',
-                        gravity: ToastGravity.TOP);
+                        msg: error.toString(), gravity: ToastGravity.TOP);
                   }
                 })
               ],

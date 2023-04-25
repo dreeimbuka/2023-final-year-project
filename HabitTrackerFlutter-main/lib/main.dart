@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mhapp/firebase_options.dart';
 import 'package:mhapp/pages/exercises.dart';
+import 'package:mhapp/pages/guides.dart';
 import 'package:mhapp/pages/habit.dart';
 import 'package:mhapp/pages/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';

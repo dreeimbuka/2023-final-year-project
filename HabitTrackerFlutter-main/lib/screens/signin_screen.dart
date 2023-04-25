@@ -40,7 +40,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                reusableTextField("Enter UserName", Icons.person_outline, false,
+                reusableTextField("Enter Email", Icons.person_outline, false,
                     _emailTextController),
                 const SizedBox(
                   height: 20,
@@ -61,8 +61,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         MaterialPageRoute(builder: (context) => MainPage()));
                   } on FirebaseAuthException catch (error) {
                     Fluttertoast.showToast(
-                        msg: 'please enter the right credentials',
-                        gravity: ToastGravity.TOP);
+                        msg: error.toString(), gravity: ToastGravity.TOP);
                   }
                 }),
                 signUpOption()

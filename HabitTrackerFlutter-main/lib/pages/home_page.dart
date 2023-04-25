@@ -101,10 +101,8 @@ class _HomePageState extends State<HomePage> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Guides()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Guides()));
                   },
                   child: Column(
                     children: [

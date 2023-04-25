@@ -63,7 +63,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 firebaseUIButton(context, "Sign Up", () async {
                   try {
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
                         email: _emailTextController.text,
                         password: _passwordTextController.text);
 
@@ -71,8 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         MaterialPageRoute(builder: (context) => MainPage()));
                   } on FirebaseAuthException catch (error) {
                     Fluttertoast.showToast(
-                        msg: 'please enter the right credentials',
-                        gravity: ToastGravity.TOP);
+                        msg: error.toString(), gravity: ToastGravity.TOP);
                   }
                 })
               ],
