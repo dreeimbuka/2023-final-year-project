@@ -1,1 +1,1 @@
-A Mental Health App to helptrack your habits
+A Mental Health App developed using flutter
